@@ -68,16 +68,20 @@ def _empty_site_response(status="error", message="", variable=["speed"]):
 def clean_nans(data_series, decimals=None):
     """
     Vectorized conversion of floats/NaNs to standard Python lists matching JSON schema.
+    Safely handles both NumPy arrays and Pandas ExtensionDtypes (e.g., StringDtype).
     """
+    # Safely check numeric type across NumPy and Pandas ExtensionDtypes
     if isinstance(data_series, (pd.Series, pd.Index)):
-        arr = data_series.values
+        is_numeric = pd.api.types.is_numeric_dtype(data_series.dtype)
+        arr = data_series.to_numpy()
     else:
         arr = np.asarray(data_series)
+        is_numeric = pd.api.types.is_numeric_dtype(arr.dtype)
         
     if arr.size == 0:
         return []
 
-    if np.issubdtype(arr.dtype, np.number):
+    if is_numeric:
         if decimals is not None:
             arr = np.round(arr, decimals)
         res = np.where(np.isfinite(arr), arr, None)
