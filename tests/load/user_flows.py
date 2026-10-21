@@ -17,7 +17,7 @@ REGION_CONFIG = {
         "tile_sizes": [1048576.0, 524288.0, 262144.0, 131072.0],
         "sources": [
             'PROMICE', 'SHIFT', 'MEaSUREs_monthly', 'MEaSUREs_quarterly', 'MEaSUREs_winter', 
-            'MEaSUREs_annual', 'ENVEO_annual', 'Mouginot_annual', 'ITS_LIVE_annual', 
+            'MEaSUREs_annual', 'C3S_annual', 'Mouginot_annual', 'ITS_LIVE_annual', 
             'ESA_CCI_winter', 'ESA_CCI_Sentinel-1', 'ESA_CCI_Sentinel-2', 'ESA_CCI_CSK', 
             'ESA_CCI_ERS1-2_Envisat', 'ESA_CCI_ERS2_1995-1996', 'ESA_CCI_PALSAR', 'ESA_CCI_ERS1_1991-1992'
         ]
@@ -33,7 +33,7 @@ REGION_CONFIG = {
         "tile_sizes": [2097152.0, 1048576.0, 524288.0, 262144.0],
         "sources": [
             'ENVEO_monthly', 'ITS_LIVE_annual', 'MEaSUREs_annual', 'MEaSUREs_multiyear', 
-            'MEaSUREs_ASE', 'SID_annual', 'ESA_CCI_annual', 'Joughin_Sentinel-1', 'Joughin_TSX', 
+            'MEaSUREs_ASE', 'SID_annual', 'C3S_annual', 'Joughin_Sentinel-1', 'Joughin_TSX', 
             'Li_Totten', 'ENVEO_Sentinel-1_PIG', 'ENVEO_ERS', 'ENVEO_TSX', 'ENVEO_ALOS', 
             'ENVEO_TSX_Sentinel-1', 'ENVEO_TSX_PALSAR', 'SHIFT'
         ]

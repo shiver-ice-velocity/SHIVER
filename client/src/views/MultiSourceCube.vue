@@ -1567,7 +1567,9 @@ const REGION_SOURCES = {
     'ENVEO_monthly', 'ITS_LIVE_annual', 'MEaSUREs_annual', 'MEaSUREs_multiyear', 
     'MEaSUREs_ASE', 'SID_annual', 'C3S_annual', 'Joughin_Sentinel-1', 'Joughin_TSX', 
     'Li_Totten', 'ENVEO_Sentinel-1_PIG', 'ENVEO_ERS', 'ENVEO_TSX', 'ENVEO_PALSAR', 
-    'ENVEO_TSX_Sentinel-1', 'ENVEO_TSX_PALSAR', 'SHIFT'
+    'ENVEO_TSX_Sentinel-1', 'ENVEO_TSX_PALSAR', 'SHIFT', 'Rosanova_PIG74', 
+	'Scambos_PIG87', 'Joughin_PIG_ERS', 'Bohlander_Scambos02', 'Bindschadler96',
+	'ScambosBohlander_DF', 'Scambos04', 'Brecher82', 'Vaughan96'
   ]
 };
 // Dinctionary linking actual data source name to advanced options display names. Only required for some data sources. Other just swap underscores for spaces
@@ -1591,6 +1593,15 @@ const SOURCE_DISPLAY_NAMES = {
 	'ENVEO_TSX_Sentinel-1': 'ENVEO TSX & Sentinel-1',
 	'ENVEO_Sentinel-1_PIG': 'ENVEO Sentinel-1 pairs (Pine Island)',
 	'Joughin_Sentinel-1': 'Joughin Sentinel-1 (quarterly)',
+	'Rosanova_PIG74': 'Pine Island (1974)',
+	'Scambos_PIG87': 'Pine Island (1987)',
+	'Joughin_PIG_ERS': 'Pine Island (1992-2000)',
+	'Bohlander_Scambos02': 'Sulzberger & Prestud (1986-1989)',
+	'Bindschadler96': 'Ice Streams D & E (1985-1991)',
+	'ScambosBohlander_DF': 'Ice Streams D & F (1984-1995)',
+	'Scambos04': 'Institute (1986-1989)',
+	'Brecher82': 'Byrd (1978-1979)',
+	'Vaughan96': 'Filchner-Ronne (1968-1994)',
 };
 const formatSourceName = (rawName) => {
     if (rawName === 'all') { return 'All Sources'; }

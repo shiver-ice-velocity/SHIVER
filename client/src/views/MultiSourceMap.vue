@@ -1077,6 +1077,7 @@ import { startGuestTour } from '../tours/guestTour';
 import VideoModal from '../components/VideoModal.vue';
 import { useHead } from '@unhead/vue'
 const plotlyLib = ref(null)
+const datasetVersion = ref(null);
 
 // --- API CONFIGURATION ---
 import apiClient, { API_URL } from '../api';
@@ -1484,7 +1485,16 @@ const FIXED_SOURCE_COLORS = {
   'ENVEO_TSX': 'rgb(0,0,255)',     // blue
   'ENVEO_PALSAR': 'rgb(0,0,205)',      // medium blue
   'ENVEO_TSX_Sentinel-1': 'rgb(0,0,139)',    // dark blue
-  'ENVEO_TSX_PALSAR': 'rgb(30,144,255)'// dodger blue
+  'ENVEO_TSX_PALSAR': 'rgb(30,144,255)', // dodger blue
+  'Rosanova_PIG74': 'rgb(0, 128, 128)',        // teal
+  'Scambos_PIG87': 'rgb(0, 139, 139)',         // dark cyan
+  'Joughin_PIG_ERS': 'rgb(32, 178, 170)',      // light sea green
+  'Bohlander_Scambos02': 'rgb(95, 158, 160)',  // cadet blue
+  'Bindschadler96': 'rgb(0, 206, 209)',        // dark turquoise
+  'ScambosBohlander_DF': 'rgb(72, 209, 204)',  // medium turquoise
+  'Scambos04': 'rgb(64, 224, 208)',            // turquoise
+  'Brecher82': 'rgb(0, 255, 255)',             // cyan
+  'Vaughan96': 'rgb(175, 238, 238)'            // pale turquoise
 };
 const FALLBACK_COLORS = ['rgb(50, 50, 50)', 'rgb(100, 100, 100)', 'rgb(150, 150, 150)'];
 let fallbackIdx = 0;
@@ -1643,6 +1653,9 @@ const fetchLayerMetadata = async () => {
     
     const data = await response.json();
     allEpochs.value = data.epochs;
+	
+	// Store the dataset version retrieved from backend
+    datasetVersion.value = data.dataset_version || null;
     
     console.log(`Loaded ${allEpochs.value.length} epochs for ${currentRegion.value}`);
     // Optional QoL: If the previously selected source doesn't exist in the new region, clear it.
@@ -1811,7 +1824,9 @@ const REGION_SOURCES = {
     'ENVEO_monthly', 'ITS_LIVE_annual', 'MEaSUREs_annual', 'MEaSUREs_multiyear', 
     'MEaSUREs_ASE', 'SID_annual', 'C3S_annual', 'Joughin_Sentinel-1', 'Joughin_TSX', 
     'Li_Totten', 'ENVEO_Sentinel-1_PIG', 'ENVEO_ERS', 'ENVEO_TSX', 'ENVEO_PALSAR', 
-    'ENVEO_TSX_Sentinel-1', 'ENVEO_TSX_PALSAR', 'SHIFT'
+    'ENVEO_TSX_Sentinel-1', 'ENVEO_TSX_PALSAR', 'SHIFT', 'Rosanova_PIG74', 
+	'Scambos_PIG87', 'Joughin_PIG_ERS', 'Bohlander_Scambos02', 'Bindschadler96',
+	'ScambosBohlander_DF', 'Scambos04', 'Brecher82', 'Vaughan96'
   ]
 };
 // Dinctionary linking actual data source name to advanced options display names. Only required for some data sources. Other just swap underscores for spaces
@@ -1835,6 +1850,15 @@ const SOURCE_DISPLAY_NAMES = {
 	'ENVEO_TSX_Sentinel-1': 'ENVEO TSX & Sentinel-1',
 	'ENVEO_Sentinel-1_PIG': 'ENVEO Sentinel-1 pairs (Pine Island)',
 	'Joughin_Sentinel-1': 'Joughin Sentinel-1 (quarterly)',
+	'Rosanova_PIG74': 'Pine Island (1974)',
+	'Scambos_PIG87': 'Pine Island (1987)',
+	'Joughin_PIG_ERS': 'Pine Island (1992-2000)',
+	'Bohlander_Scambos02': 'Sulzberger & Prestud (1986-1989)',
+	'Bindschadler96': 'Ice Streams D & E (1985-1991)',
+	'ScambosBohlander_DF': 'Ice Streams D & F (1984-1995)',
+	'Scambos04': 'Institute (1986-1989)',
+	'Brecher82': 'Byrd (1978-1979)',
+	'Vaughan96': 'Filchner-Ronne (1968-1994)',
 };
 const formatSourceName = (rawName) => {
     if (rawName === 'all') { return 'All Sources'; }
@@ -3668,7 +3692,7 @@ const downloadChartImage = async () => {
       const uniqueSourcesArray = Object.keys(sourceStats);
       
       // Add the global text file
-      const citationText = generateCitationText(uniqueSourcesArray, currentRegion.value);
+      const citationText = generateCitationText(uniqueSourcesArray, currentRegion.value, datasetVersion.value);
       zip.file("citations_and_usage.txt", citationText);
 
       // Mode helper (with the +1 fix)
@@ -3701,7 +3725,7 @@ const downloadChartImage = async () => {
       uniqueSourcesArray.forEach(source => {
           const stats = sourceStats[source];
           const modeVal = getMode(stats.dts);
-          const fullCite = generateCitationText([source], currentRegion.value);
+          const fullCite = generateCitationText([source], currentRegion.value, datasetVersion.value);
           
           let cleanCite = "";
           const delimiter = "cite these original sources:\n\n* ";
@@ -3884,7 +3908,7 @@ const handleDownload = async () => {
     const uniqueSourcesArray = Object.keys(sourceStats);
     
     // Generate and add the global text file
-    const citationText = generateCitationText(uniqueSourcesArray, currentRegion.value);
+    const citationText = generateCitationText(uniqueSourcesArray, currentRegion.value, datasetVersion.value);
     zip.file("citations_and_usage.txt", citationText);
 
     // --- Helper to calculate the Mode of the dt array ---
@@ -3918,7 +3942,7 @@ const handleDownload = async () => {
     uniqueSourcesArray.forEach(source => {
         const stats = sourceStats[source];
         const modeVal = getMode(stats.dts);
-        const fullCite = generateCitationText([source], currentRegion.value);
+        const fullCite = generateCitationText([source], currentRegion.value, datasetVersion.value);
         
         // Isolate the underlying data citation
         let cleanCite = "";

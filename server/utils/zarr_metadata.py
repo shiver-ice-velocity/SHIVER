@@ -29,6 +29,9 @@ def load_zarr_metadata():
         try:
             ds = xr.open_zarr(path, consolidated=True) 
             
+            # Extract dataset_version attribute from Zarr store metadata
+            dataset_version = ds.attrs.get("dataset_version", None)
+            
             # Extract mid-dates
             times = pd.to_datetime(ds['time'].values).strftime('%Y-%m-%d').tolist()
             
@@ -58,6 +61,7 @@ def load_zarr_metadata():
                 })
             
             metadata_cache[region] = {
+                "dataset_version": dataset_version,
                 "sources": unique_sources,
                 "epochs": epochs
             }

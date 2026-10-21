@@ -1,12 +1,6 @@
 // web/client/src/utils/citationsConfig.js
 
 export const citationsConfig = {
-	common: {
-		  "SHIVER": [
-				"SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets (Version v[specify version number]) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859",
-				"SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. [specify journal]. https://doi.org/10.xxxx/XXXXXXX"
-		  ],
-	},
 	greenland: {
 		  "SHIFT": [
 				"SHIFT Greenland data: Sole, A. J. and Davison, B. J. 2026. SHeffield Ice Flow Tracker (SHIFT) velocity data: West Greenland ice surface velocity fields derived from intensity tracking of Sentinel-1 Synthetic Aperture Radar image pairs. [Online]. Available from: https://doi.org/10.15131/shef.data.33113009.v1.",
@@ -43,8 +37,8 @@ export const citationsConfig = {
 		  "Mouginot_annual": [
 				"Mouginot annual method: Mouginot, J., Rignot, E., Scheuchl, B. and Millan, R., 2017. Comprehensive annual ice sheet velocity mapping using Landsat-8, Sentinel-1, and RADARSAT-2 data. Remote Sensing, 9(4), p.364. DOI: https://doi.org/10.3390/rs9040364. "
 		  ],
-		  "ESA_CCI_annual": [
-				"ENVEO annual data: Copernicus Climate Change Service, Climate Data Store (2020): Ice sheet velocity for Antarctica and Greenland derived from satellite observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.0b96b838."
+		  "C3S_annual": [
+				"C3S annual data: Copernicus Climate Change Service, Climate Data Store (2020): Ice sheet velocity for Antarctica and Greenland derived from satellite observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.0b96b838."
 		  ],
 		  "ESA_CCI_winter": [
 				"ESA CCI winter data: ESA Greenland Ice Sheet CCI project team (2018): ESA Greenland Ice Sheet Climate Change Initiative (Greenland_Ice_Sheet_cci): Greenland Ice Velocity Map, Winter 2017-2018, v1.0. Centre for Environmental Data Analysis, 16/04/2026. https://catalogue.ceda.ac.uk/uuid/eaed9fba86c44e9c854dfbdec9d16b99."
@@ -141,8 +135,8 @@ export const citationsConfig = {
 				"SID data: Hogg, A.E.; Davison, B.J.; Rigby, R.; Wallis, B.J.; Slater, R.A.W. (2025): EOCIS: Ice Sheet Velocity, V1. NERC EDS Centre for Environmental Data Analysis, 17 April 2025. doi:10.5285/c0b464b3da9845758cd33591e57c4abf. https://dx.doi.org/10.5285/c0b464b3da9845758cd33591e57c4abf",
 				"SID method: Davison, B.J., Hogg, A.E., Rigby, R., Veldhuijsen, S., van Wessem, J.M., van den Broeke, M.R., Holland, P.R., Selley, H.L. and Dutrieux, P., 2023. Sea level rise from West Antarctic mass loss significantly modified by large snowfall anomalies. Nature Communications, 14(1), p.1479. DOI: https://doi.org/10.1038/s41467-023-36990-3."
 			],
-			"ESA_CCI_annual": [
-				"ENVEO annual data: Copernicus Climate Change Service, Climate Data Store (2020): Ice sheet velocity for Antarctica and Greenland derived from satellite observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.0b96b838."
+			"C3S_annual": [
+				"C3S annual data: Copernicus Climate Change Service, Climate Data Store (2020): Ice sheet velocity for Antarctica and Greenland derived from satellite observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.0b96b838."
 			],
 			"Joughin_Sentinel-1": [
 				"Joughin Sentinel-1 (quarterly) method: Joughin, I., Shapero, D., Smith, B., Dutrieux, P. and Barham, M., 2021. Ice-shelf retreat drives recent Pine Island Glacier speedup. Science Advances, 7(24), p.eabg3080. DOI: 10.1126/sciadv.abg3080."
@@ -152,9 +146,46 @@ export const citationsConfig = {
 			],
 			"Li_Totten": [
 				"Li et al. (Totten) method: Li, R., Cheng, Y., Chang, T., Gwyther, D.E., Forbes, M., An, L., Xia, M., Yuan, X., Qiao, G., Tong, X. and Ye, W., 2023. Satellite record reveals 1960s acceleration of Totten ice shelf in East Antarctica. Nature Communications, 14(1), p.4061. DOI: https://doi.org/10.1038/s41467-023-39588-x."
+			],
+			"Rosanova_PIG74": [
+				"Rosanova_PIG74 method: Rosanova, C. E., and B. K. Lucchitta, Acceleration of Pine Island Glacier Ice Shelf, Eos Trans. AGU, 82(47), 2001"
+			],
+            "Scambos_PIG87": [
+				"Scambos_PIG87 data: Scambos, T., B. Raup, and J. Bohlander, compilers, Antarctic ice velocity data archive. Boulder, CO: National Snow and Ice Data Center. Digital media (http://nsidc.org/data/velmap/), 2003."
+			],
+            "Joughin_PIG_ERS": [
+				"Joughin_PIG_ERS method: Joughin, I., Rignot, E., Rosanova, C.E., Lucchitta, B.K. and Bohlander, J., 2003. Timing of recent accelerations of Pine Island glacier, Antarctica. Geophysical Research Letters, 30(13). DOI: https://doi.org/10.1029/2003GL017609"
+			],
+            "Bohlander_Scambos02": [
+				"Bohlander_Scambos02 method: Bohlander, J., & Scambos, T. A. 2002. Ice Flow and Morphology of Prestrud Inlet and Western Sulzberger Ice Shelf, West Antarctica. Polar Geography, 26(3), 227–234. https://doi.org/10.1080/789610194"
+			],
+            "Bindschadler96": [
+				"Bindschadler96 method: Bindschadler, R., Vornberger, P., Blankenship, D., Scambos, T. and Jacobel, R., 1996. Surface velocity and mass balance of Ice Streams D and E, West Antarctica. Journal of Glaciology, 42(142), pp.461-475. DOI: https://doi.org/10.3189/S0022143000003452"
+			],
+            "ScambosBohlander_DF": [
+				"ScambosBohlander_DF data: Bindschadler, R., & Raymond, C. 2004. ""Antarctic Ice Velocity Data"" U.S. Antarctic Program (USAP) Data Center. doi: https://doi.org/10.7265/N5KS6PH5"
+			],
+            "Scambos04": [
+				"Scambos04 method: Scambos, T., Bohlander, J., Raup, B. and Haran, T., 2004. Glaciological characteristics of Institute Ice Stream using remote sensing. Antarctic Science, 16(2), pp.205-213. https://doi.org/10.1017/S0954102004001919"
+			],
+            "Brecher82": [
+				"Brecher82 method: Brecher, H.H., 1982. Photographic determination of surface velocities and elevations on Byrd Glacier. Antarctic Journal of the United States, 17(5), pp.79-81"
+			],
+            "Vaughan96": [
+				"Vaughan96 method: Vaughan, D.G., and M. Jonas, 1996. Measurements of velocity of Filchner-Ronne Ice Shelf. Filchner-Ronne Ice Shelf Programme (FRISP) Report No. 10. Ed. H Oerter. Pub. AWI, Bremerhaven. 111-116"
 			]
 	}
 };
+
+
+export function getShiverCitations(datasetVersion = null) {
+  const versionStr = datasetVersion ? ` (Version v${datasetVersion})` : '';
+
+  return [
+    `SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets${versionStr} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859`,
+    `SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation.`
+  ];
+}
 	
 
 export function generateCitationText(usedSources, currentRegion) {
@@ -174,8 +205,10 @@ export function generateCitationText(usedSources, currentRegion) {
   text += "-------------------------\n";
   text += "If you use this data in a publication, please cite the SHIVER web application and compilation method:\n\n";
   
-  citationsConfig.common["SHIVER"].forEach(cit => {
-      text += `* ${cit}\n`;
+  // Dynamically generate SHIVER citations using the version passed in (or imported)
+  const shiverCitations = getShiverCitations(datasetVersion);
+  shiverCitations.forEach((cit) => {
+    text += `* ${cit}\n`;
   });
   text += "\n";
 
