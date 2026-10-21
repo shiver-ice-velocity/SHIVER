@@ -1657,7 +1657,8 @@ const fetchLayerMetadata = async () => {
 	// Store the dataset version retrieved from backend
     datasetVersion.value = data.dataset_version || null;
     
-    console.log(`Loaded ${allEpochs.value.length} epochs for ${currentRegion.value}`);
+    console.log(`Loaded ${allEpochs.value.length} epochs for ${currentRegion.value} (v${datasetVersion.value})`);
+	
     // Optional QoL: If the previously selected source doesn't exist in the new region, clear it.
     if (selectedSource.value && !availableSources.value.includes(selectedSource.value)) {
       selectedSource.value = '';
