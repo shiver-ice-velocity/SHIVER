@@ -1077,7 +1077,6 @@ import { startGuestTour } from '../tours/guestTour';
 import VideoModal from '../components/VideoModal.vue';
 import { useHead } from '@unhead/vue'
 const plotlyLib = ref(null)
-const datasetVersion = ref(null);
 
 // --- API CONFIGURATION ---
 import apiClient, { API_URL } from '../api';
@@ -1559,6 +1558,7 @@ const analysisWmsUrl = ref('');
 const selectedSource = ref('');
 const selectedEpoch = ref('');
 const allEpochs = ref([]);
+const datasetVersion = ref(null);
 const isLoadingMetadata = ref(false);
 const showSatelliteBasemap = computed(() => selectedBasemap.value === 'satellite');
 const overlayLayer = ref('speed'); // Defaults to speed

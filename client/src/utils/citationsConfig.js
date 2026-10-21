@@ -188,7 +188,7 @@ export function getShiverCitations(datasetVersion = null) {
 }
 	
 
-export function generateCitationText(usedSources, currentRegion) {
+export function generateCitationText(usedSources, currentRegion, datasetVersion = null) {
   const dateDownloaded = new Date().toISOString().split('T')[0];
   
   // Ensure the region string is lowercase to match the object keys
