@@ -31,7 +31,10 @@ export default defineConfig({
       exclude: ['/'],
       
       // 4. Force feed the explicit routes so timing issues don't matter
-      dynamicRoutes: shiverRoutes
+      dynamicRoutes: shiverRoutes,
+	  
+	  // 5. Stop vite-plugin-sitemap from trying to write a dist/robots.txt
+	  generateRobotsTxt: false
     })
   ],
   ssr: {
