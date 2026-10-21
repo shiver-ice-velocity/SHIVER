@@ -163,7 +163,7 @@ export const citationsConfig = {
 				"Bindschadler96 method: Bindschadler, R., Vornberger, P., Blankenship, D., Scambos, T. and Jacobel, R., 1996. Surface velocity and mass balance of Ice Streams D and E, West Antarctica. Journal of Glaciology, 42(142), pp.461-475. DOI: https://doi.org/10.3189/S0022143000003452"
 			],
             "ScambosBohlander_DF": [
-				"ScambosBohlander_DF data: Bindschadler, R., & Raymond, C. 2004. ""Antarctic Ice Velocity Data"" U.S. Antarctic Program (USAP) Data Center. doi: https://doi.org/10.7265/N5KS6PH5"
+				"ScambosBohlander_DF data: Bindschadler, R., & Raymond, C. 2004. 'Antarctic Ice Velocity Data' U.S. Antarctic Program (USAP) Data Center. doi: https://doi.org/10.7265/N5KS6PH5"
 			],
             "Scambos04": [
 				"Scambos04 method: Scambos, T., Bohlander, J., Raup, B. and Haran, T., 2004. Glaciological characteristics of Institute Ice Stream using remote sensing. Antarctic Science, 16(2), pp.205-213. https://doi.org/10.1017/S0954102004001919"
