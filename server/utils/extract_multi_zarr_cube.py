@@ -82,6 +82,10 @@ def generate_multi_netcdf_cube(
     # 3. Open Zarr Store (Lazy Load)
     ds = xr.open_zarr(store_info['path'], consolidated=True, chunks={})
     
+    # Extract dataset_version attribute from Zarr store metadata
+    dataset_version = ds.attrs.get("dataset_version", None)
+    version = f" (Version v{dataset_version})" if dataset_version else ""
+
     # Handle duplicate times
     time_series = pd.Series(ds['time'].values)
     if time_series.duplicated().any():
@@ -163,12 +167,12 @@ def generate_multi_netcdf_cube(
         ]
         
     # The global 30+ line citation string for the metadata and txt file
-    citation_text = generate_citation_text(actual_sources, region)
+    citation_text = generate_citation_text(actual_sources, region, dataset_version=dataset_version)
     
     # A. Create the dedicated SHIVER row first
     shiver_citations = (
-        "SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets (Version v[specify version number]) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859"
-        "SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. [specify journal]. https://doi.org/10.xxxx/XXXXXXX"
+        f"SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets{version} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859\n\n"
+        f"SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation."
     )
     
     summary_rows = [{
@@ -207,7 +211,7 @@ def generate_multi_netcdf_cube(
         epochs = len(valid_times)
         
         # Specific Citation for just this row
-        full_cite = generate_citation_text([src], region)
+        full_cite = generate_citation_text([src], region, dataset_version=dataset_version)
         delimiter = "cite these original sources:\n\n* "
         
         if delimiter in full_cite:
@@ -268,7 +272,7 @@ def generate_multi_netcdf_cube(
         'creator_name': 'Benjamin Davison',
         'creator_email': 'b.j.davison@sheffield.ac.uk',
         'institution': 'University of Sheffield',
-        'product_version': '1.0',
+        'product_version': dataset_version,
         'time_coverage_start': time_start,
         'time_coverage_end': time_end,
         'user_selected_sources': ", ".join(sources), # Log requested sources in metadata
