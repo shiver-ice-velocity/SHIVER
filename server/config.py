@@ -67,7 +67,7 @@ TIFF_PATHS = {
         "count": overlay_path_gr / "Greenland_AllSources_Epoch_Count.tif",
         "trend": overlay_path_gr / "Greenland_AllSources_Linear_Trend_masked.tif",
         "hillshade": overlay_path_gr / "Greenland_Hillshade_COG.tif",
-        "range": overlay_path_gr / "Greenland_Ensemble_Median_Spread_COG.tif",
+        "range": overlay_path_gr / "greenland_agg_mean_COG.tif",
         "landsat_mosaic": landsat_mosaic_path_gr / "greenland_20m_mosaic.vrt"
     },
     "Antarctica": {
@@ -77,7 +77,7 @@ TIFF_PATHS = {
         "count": overlay_path_ant / "Antarctica_AllSources_Epoch_Count.tif",
         "trend": overlay_path_ant / "Antarctica_AllSources_Linear_Trend_masked.tif",
         "hillshade": overlay_path_ant / "Antarctica_Hillshade_COG.tif",
-        "range": overlay_path_ant / "Antarctica_Ensemble_Median_Spread.tif",
+        "range": overlay_path_ant / "antarctica_agg_mean_COG.tif",
     }
 }
     
