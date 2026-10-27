@@ -25,7 +25,7 @@ CITATIONS_CONFIG = {
 		  ],
 		  "PROMICE": [
 				"PROMICE data: Solgaard, Anne Munck; Kusk, Anders, 2026, Greenland Ice Velocity from Sentinel-1 Edition 5, https://doi.org/10.22008/FK2/K70OPK, GEUS Dataverse, V6",
-				"PROMICE method: Solgaard, A., Kusk, A., Merryman Boncori, J.P., Dall, J., Mankoff, K.D., Ahlstrøm, A.P., Andersen, S.B., Citterio, M., Karlsson, N.B., Kjeldsen, K.K. and Korsgaard, N.J., 2021. Greenland ice velocity maps from the PROMICE project. Earth System Science Data, 13(7), pp.3491-3512. DOI: https://doi.org/10.5194/essd-13-3491-2021.",
+				"PROMICE method: Solgaard, A., Kusk, A., Merryman Boncori, J.P., Dall, J., Mankoff, K.D., Ahlstrøm, A.P., Andersen, S.B., Citterio, M., Karlsson, N.B., Kjeldsen, K.K., Korsgaard, N.J., Larsen, S.H. and Fausto, R.S., 2021. Greenland ice velocity maps from the PROMICE project. Earth System Science Data, 13(7), pp.3491-3512. DOI: https://doi.org/10.5194/essd-13-3491-2021.",
 		  ],
           "MEaSUREs_monthly": [
 				"MEaSUREs monthly data: Joughin, I. (2023). MEaSUREs Greenland Monthly Ice Sheet Velocity Mosaics from SAR and Landsat. (NSIDC-0731, Version 5). [Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/EGKZX6FXXM4P.",
