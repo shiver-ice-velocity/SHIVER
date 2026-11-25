@@ -178,13 +178,32 @@ export const citationsConfig = {
 };
 
 
-export function getShiverCitations(datasetVersion = null) {
-  const versionStr = datasetVersion ? ` (Version v${datasetVersion})` : '';
+export function getShiverCitations(datasetVersion = null, currentRegion = null) {
+  const version = datasetVersion ? String(datasetVersion).replace(/^v+/, '') : '1.6.0';
+  const regionKey = currentRegion ? currentRegion.toLowerCase() : null;
 
-  return [
-    `SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets${versionStr} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859`,
-    `SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation.`
-  ];
+  const greenlandCitation =
+    `SHIVER data: Davison, B. J. (2026). Greenland Ice Sheet flow - 1972 to 2026 ` +
+    `(Version ${version}) [Data set]. University of Sheffield. https://doi.org/10.60480/17ee-4k62`;
+
+  const antarcticaCitation =
+    `SHIVER data: Davison, B. J. (2026). Antarctic Ice Sheet flow - 1963 to 2026 ` +
+    `(Version ${version}) [Data set]. University of Sheffield. https://doi.org/10.60480/qhx5-tw46`;
+
+  const methodCitation =
+    `SHIVER method paper: Davison, B. J. et al. (in prep). ` +
+    `Unified satellite-derived ice velocity datasets for Earth's ice sheets. Manuscript in preparation.`;
+
+  let dataCitations;
+  if (regionKey === 'greenland') {
+    dataCitations = [greenlandCitation];
+  } else if (regionKey === 'antarctica') {
+    dataCitations = [antarcticaCitation];
+  } else {
+    dataCitations = [greenlandCitation, antarcticaCitation];
+  }
+
+  return [...dataCitations, methodCitation];
 }
 	
 
@@ -192,7 +211,7 @@ export function generateCitationText(usedSources, currentRegion, datasetVersion 
   const dateDownloaded = new Date().toISOString().split('T')[0];
   
   // Ensure the region string is lowercase to match the object keys
-  const regionKey = currentRegion.toLowerCase(); 
+  const regionKey = currentRegion ? currentRegion.toLowerCase() : ''; 
   const regionCitations = citationsConfig[regionKey] || {};
   
   let text = "=========================================\n";
@@ -203,10 +222,10 @@ export function generateCitationText(usedSources, currentRegion, datasetVersion 
 
   text += "1. ACKNOWLEDGING THE TOOL\n";
   text += "-------------------------\n";
-  text += "If you use this data in a publication, please cite the SHIVER web application and compilation method:\n\n";
+  text += "If you use this data in a publication, please cite the data description paper and the unified dataset:\n\n";
   
-  // Dynamically generate SHIVER citations using the version passed in (or imported)
-  const shiverCitations = getShiverCitations(datasetVersion);
+  // Dynamically generate SHIVER citations using the version and region passed in
+  const shiverCitations = getShiverCitations(datasetVersion, regionKey);
   shiverCitations.forEach((cit) => {
     text += `* ${cit}\n`;
   });

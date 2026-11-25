@@ -2,17 +2,37 @@
 from datetime import datetime
 
 
-def shiver_citations(dataset_version=None):
+def shiver_citations(dataset_version=None, current_region=None):
     """
     The citations for SHIVER itself. Pass the store's dataset version
-    (ds.attrs["dataset_version"]) so the citation names the exact release;
-    each version matches a release of the Zenodo record.
+    (ds.attrs["dataset_version"]) so the citation names the exact release,
+    and current_region ("greenland" or "antarctica") for the region-specific
+    dataset citation.
     """
-    version = f" (Version v{dataset_version})" if dataset_version else ""
-    return [
-        f"SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets{version} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859",
-        "SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation.",
-    ]
+    version = str(dataset_version).lstrip("v") if dataset_version else "1.6.0"
+    region_key = current_region.lower() if current_region else None
+
+    greenland_citation = (
+        f"SHIVER data: Davison, B. J. (2026). Greenland Ice Sheet flow - 1972 to 2026 "
+        f"(Version {version}) [Data set]. University of Sheffield. https://doi.org/10.60480/17ee-4k62"
+    )
+    antarctica_citation = (
+        f"SHIVER data: Davison, B. J. (2026). Antarctic Ice Sheet flow - 1963 to 2026 "
+        f"(Version {version}) [Data set]. University of Sheffield. https://doi.org/10.60480/qhx5-tw46"
+    )
+    method_citation = (
+        "SHIVER method paper: Davison, B. J. et al. (in prep). "
+        "Unified satellite-derived ice velocity datasets for Earth's ice sheets. Manuscript in preparation."
+    )
+
+    if region_key == "greenland":
+        data_citations = [greenland_citation]
+    elif region_key == "antarctica":
+        data_citations = [antarctica_citation]
+    else:
+        data_citations = [greenland_citation, antarctica_citation]
+
+    return [*data_citations, method_citation]
 
 CITATIONS_CONFIG = {
     "common": {
@@ -211,7 +231,7 @@ def generate_citation_text(used_sources: list[str], current_region: str, dataset
     text += "-------------------------\n"
     text += "If you use this data in a publication, please cite the SHIVER web application and compilation method:\n\n"
     
-    for cit in shiver_citations(dataset_version):
+    for cit in shiver_citations(dataset_version=dataset_version, current_region=current_region):
         text += f"* {cit}\n"
     text += "\n"
 

@@ -1072,7 +1072,7 @@ import antarcticaIcon from '../components/icons/antarcticaIcon.vue';
 import greenlandIcon from '../components/icons/greenlandIcon.vue';
 import excelIcon from '../components/icons/excelIcon.vue';
 import graphIcon from '../components/icons/graphIcon.vue';
-import { generateCitationText } from '../utils/citationsConfig';
+import { generateCitationText, getShiverCitations } from '../utils/citationsConfig';
 import { startGuestTour } from '../tours/guestTour';
 import VideoModal from '../components/VideoModal.vue';
 import { useHead } from '@unhead/vue'
@@ -3716,10 +3716,8 @@ const downloadChartImage = async () => {
       let csvContent = "Data Source,First Date,Last Date,Mode Temporal Resolution (days),Epochs (Measurements),Citation\n";
       
       // 1. Add the SHIVER row first
-      const shiverCitations = 
-          "SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets (Version v[specify version number]) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859\n" +
-          "SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation.";
-      
+	  const shiverCitations = getShiverCitations(datasetVersion.value, currentRegion.value).join("\n");
+
       csvContent += `SHIVER,,,,,"${shiverCitations.replace(/"/g, '""')}"\n`;
       
       // 2. Loop through unique sources
@@ -3932,10 +3930,8 @@ const handleDownload = async () => {
     let csvContent = "Data Source,First Date,Last Date,Mode Temporal Resolution (days),Epochs (Measurements),Citation\n";
     
     // 1. Add the SHIVER row first
-	const versionStr = datasetVersion.value ? ` (Version v${datasetVersion.value})` : '';
-    const shiverCitations = 
-		`SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth’s ice sheets${versionStr} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859\n` +
-		`SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation.`;
+	//const versionStr = datasetVersion.value ? ` (Version v${datasetVersion.value})` : '';
+    const shiverCitations = getShiverCitations(datasetVersion.value, currentRegion.value).join("\n");
     
     // Empty commas represent the blank data columns
     csvContent += `SHIVER,,,,,"${shiverCitations.replace(/"/g, '""')}"\n`;

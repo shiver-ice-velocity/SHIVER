@@ -10,7 +10,7 @@ import platform
 from pathlib import Path
 from datetime import datetime
 
-from utils.citations import generate_citation_text
+from utils.citations import generate_citation_text, shiver_citations
 
 # Set zarr store depending on operating system
 current_os = platform.system()
@@ -170,9 +170,8 @@ def generate_multi_netcdf_cube(
     citation_text = generate_citation_text(actual_sources, region, dataset_version=dataset_version)
     
     # A. Create the dedicated SHIVER row first
-    shiver_citations = (
-        f"SHIVER data and compilation method: Davison, B. J. (2026). The SHeffield Ice Velocity ExploreR (SHIVER): A unified satellite-derived ice velocity dataset for Earth's ice sheets{version} [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21375859\n\n"
-        f"SHIVER method paper: Davison, B. J. et al. (in prep). The SHeffield Ice Velocity ExploreR (SHIVER): an online tool for low latency exploration, analysis and sub-setting of unified satellite-derived ice velocity data for Earth's ice sheets. Manuscript in preparation."
+    shiver_citation_str = "\n\n".join(
+        shiver_citations(dataset_version=dataset_version, current_region=region)
     )
     
     summary_rows = [{
@@ -181,7 +180,7 @@ def generate_multi_netcdf_cube(
         "Last Date": "",
         "Mode Temporal Resolution (days)": "",
         "Epochs (Measurements)": "",
-        "Citation": shiver_citations
+        "Citation": shiver_citation_str
     }]
     
     # B. Generate the Summary Table (CSV) Data
